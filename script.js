@@ -6,7 +6,7 @@ const movieResults = document.getElementById('movie-results');
 
 function fetchMovies(query) {
     fetch(`https://www.omdbapi.com/?s=${query}&apikey=${apiKey}`)
-    .then(response => response.json())  // Convert the response into JSON
+    .then(response => response.json())  
     .then(data => {
         if (data.Response === "True") {
             displayMovies(data.Search);
@@ -21,7 +21,7 @@ function fetchMovies(query) {
 }
 
 function displayMovies(movies) {
-    movieResults.innerHTML = '';  // Clear previous results
+    movieResults.innerHTML = '';  
 
     movies.forEach(movie => {
         const movieCard = document.createElement('div');
@@ -50,7 +50,7 @@ function displayMovies(movies) {
 
 function fetchMovieDetails(imdbID, detailsSection) {
     fetch(`https://www.omdbapi.com/?i=${imdbID}&apikey=${apiKey}`)
-    .then(response => response.json())  // Convert the response into JSON
+    .then(response => response.json()) 
     .then(movie => {
         detailsSection.innerHTML = `
             <p><strong>Plot:</strong> ${movie.Plot}</p>
@@ -59,7 +59,7 @@ function fetchMovieDetails(imdbID, detailsSection) {
             <p><strong>Genre:</strong> ${movie.Genre}</p>
             <p><strong>IMDb Rating:</strong> ${movie.imdbRating}</p>
         `;
-        detailsSection.style.display = 'block';  // Show the details
+        detailsSection.style.display = 'block'; 
     })
     .catch(error => {
         console.log("Error fetching details:", error);
